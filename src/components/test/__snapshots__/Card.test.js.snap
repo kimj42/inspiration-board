@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card card does not break if test and emjoi does not show up 1`] = `
+<div
+  className="card"
+>
+   
+</div>
+`;
+
+exports[`Card card must work with test and emoji passed in as string 1`] = `
+<div
+  className="card"
+>
+  hello testing card
+   
+  heart_eyes
+</div>
+`;
