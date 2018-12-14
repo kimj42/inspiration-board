@@ -25,7 +25,7 @@ class Board extends Component {
     const emoji = require("emoji-dictionary");
 
     const exampleFormat = CARD_DATA.cards.map((entry) => {
-      return <li> {entry.text} {emoji.getUnicode(`${entry.emoji}`)} </li>
+      return <Card text={entry.text} emoji={emoji.getUnicode(`${entry.emoji}`)} />
     });
 
     return (
