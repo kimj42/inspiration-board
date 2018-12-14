@@ -14,13 +14,28 @@ class Board extends Component {
     this.state = {
       cards: [],
     };
+
   }
 
+
+
+
+
   render() {
+    const emoji = require("emoji-dictionary");
+
+    const exampleFormat = CARD_DATA.cards.map((entry) => {
+      return <li> {entry.text} {emoji.getUnicode(`${entry.emoji}`)} </li>
+    });
+
     return (
       <div>
         Board
+        <ul>
+          {exampleFormat}
+        </ul>
       </div>
+
     )
   }
 
