@@ -18,9 +18,9 @@ class Board extends Component {
   };
 
   componentDidMount() {
-    const GET_ALL_CARDS = "https://inspiration-board.herokuapp.com/boards/redPanda/cards";
+    const GET_ALL_CARDS_URL = "https://inspiration-board.herokuapp.com/boards/redPanda/cards";
 
-    axios.get(GET_ALL_CARDS)
+    axios.get(GET_ALL_CARDS_URL)
     .then((response) => {
       this.setState({
         cards: response.data,
@@ -33,18 +33,43 @@ class Board extends Component {
     });
   }
 
+  addCardintoCardCollection = (newCard) => {
+    console.log("I'm in addCardintoCardCollection");
+    let newCardCollection = this.state.cards.push(newCard)
 
+    this.setState({
+      cards: newCardCollection
+    });
+  }
+
+  // componentDidMount() {
+  //   const POST_CARD_TO_BOARD_URL = `https://inspiration-board.herokuapp.com/boards/redPanda/cards?text=${this.state.text}&emoji=${this.state.emoji}`;
+  //
+  //   // addCard = (cardInfo) => {
+  //   axios.post(POST_CARD_TO_BOARD_URL)
+  //   .then((response) => {
+  //
+  //   })
+  //   .catch((errors) => {
+  //
+  //   });
+  // };
+  // }
 
   render() {
     const emoji = require("emoji-dictionary");
-
-    const exampleFormat = this.state.cards.map((entry, i ) => {
+    const exampleFormat = this.state.cards.map((entry, i) => {
       return <Card key={i}  text={entry.card.text} emoji={emoji.getUnicode(`${entry.card.emoji}`)} />
     });
 
     return (
       <div>
-        Board
+        <h1>{emoji.getUnicode('sparkling_heart')} Red Panda {emoji.getUnicode('sparkling_heart')}</h1>
+
+        <section>
+          <span>Add a new card: </span>
+          <NewCardForm callback={this.addCardintoCardCollection}/>
+        </section>
         <ul>
           {exampleFormat}
         </ul>
