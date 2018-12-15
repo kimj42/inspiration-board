@@ -17,9 +17,6 @@ class NewCardForm extends Component {
   }
 
   onFormSubmit = (event) => {
-    console.log("I'm in onFormSubmit");
-    // hold onto the this.state.text and this.state.emoji and add that to the card inside the board
-    //then reset the state so that it's back to empty string
     event.preventDefault();
     const newCardData = {
       text: this.state.text,
@@ -44,18 +41,6 @@ class NewCardForm extends Component {
 
     this.setState(newState);
   };
-
-  // onInputChange = (event) => {
-  //   console.log("In on input change");
-  //
-  //   const field = event.target.name;
-  //   const value = event.target.value;
-  //
-  //   const newState = {};
-  //   newState[field] = value;
-  //   // newState.field = value;  // not the same :(
-  //   this.setState(newState);
-  // }
 
   render() {
     return (

@@ -28,7 +28,7 @@ class Board extends Component {
       });
 
       let updatedIDsAfterGet = response.data.map((card) => {
-        console.log(card.card.id);
+        // console.log(card.card.id);
         return card.card.id
       })
 
@@ -45,8 +45,8 @@ class Board extends Component {
   }
 
   displayErrorsToUser = () => {
-    console.log("I am in displayErrorsToUser");
-    console.log(this.state.errors);
+    // console.log("I am in displayErrorsToUser");
+    // console.log(this.state.errors);
     if (this.state.errors.length >= 1) {
       let catchErrors = this.state.errors.map(() => {
         return <li>{this.state.errors}</li>
@@ -71,13 +71,13 @@ class Board extends Component {
          errors: []
        });
 
-       console.log("In the success response for the post", response);
+       // console.log("In the success response for the post", response);
        let updatedData = this.state.cards;
        updatedData.push({card: response.data.card});
 
        let updatedIDsAfterPost = this.state.ids;
        updatedIDsAfterPost.push(response.data.card.id);
-       console.log(updatedIDsAfterPost);
+       // console.log(updatedIDsAfterPost);
 
        this.setState({
          cards: updatedData,
@@ -93,8 +93,8 @@ class Board extends Component {
   };
 
   deleteCard = (cardNumber) => {
-    console.log("I am in deleteCard");
-    console.log(cardNumber);
+    // console.log("I am in deleteCard");
+    // console.log(cardNumber);
     let DELETE_CARD_URL = `https://inspiration-board.herokuapp.com/cards/${cardNumber}`
     axios.delete(DELETE_CARD_URL)
       .then((response) => {
@@ -102,8 +102,8 @@ class Board extends Component {
           errors: []
         });
 
-        console.log(response);
-        console.log(`deleted card: ${cardNumber}`);
+        // console.log(response);
+        // console.log(`deleted card: ${cardNumber}`);
         let currentIDs = this.state.cards.map((card) => {
           // console.log(card);
           return card.card.id
@@ -132,7 +132,7 @@ class Board extends Component {
   };
 
   render() {
-    console.log(this.state.errors);
+    // console.log(this.state.errors);
     const emoji = require("emoji-dictionary");
     const exampleFormat = this.state.cards.map((entry, i) => {
       return <li>
