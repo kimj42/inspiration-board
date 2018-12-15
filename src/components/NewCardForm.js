@@ -24,7 +24,7 @@ class NewCardForm extends Component {
     const newCardData = {
       text: this.state.text,
       emoji: this.state.emoji,
-      
+
     };
 
     this.setState({
@@ -32,7 +32,7 @@ class NewCardForm extends Component {
       emoji: "",
     });
 
-    return this.props.callback(newCardData);
+    return this.props.createNewCardCallback(newCardData);
   };
 
   onInputChange = (event) => {

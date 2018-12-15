@@ -4,7 +4,14 @@ exports[`Card card does not break if test and emjoi does not show up 1`] = `
 <div
   className="card"
 >
-   
+  <span>
+     
+  </span>
+  <button
+    onClick={[Function]}
+  >
+     Delete 
+  </button>
 </div>
 `;
 
@@ -12,8 +19,15 @@ exports[`Card card must work with test and emoji passed in as string 1`] = `
 <div
   className="card"
 >
-  hello testing card
-   
-  heart_eyes
+  <span>
+    hello testing card
+     
+    heart_eyes
+  </span>
+  <button
+    onClick={[Function]}
+  >
+     Delete 
+  </button>
 </div>
 `;

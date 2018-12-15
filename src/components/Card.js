@@ -5,10 +5,17 @@ import emoji from 'emoji-dictionary';
 import './Card.css';
 
 class Card extends Component {
+  initiatePostRequest = () => {
+    return this.props.deleteCardCallback(this.props.id)
+  }
+
   render() {
     return (
       <div className="card">
-        {this.props.text} {this.props.emoji}
+        <span>
+          {this.props.text} {this.props.emoji}
+        </span>
+        <button onClick={this.initiatePostRequest}> Delete </button>
       </div>
     )
   }
