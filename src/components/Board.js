@@ -23,6 +23,10 @@ class Board extends Component {
 
     axios.get(GET_ALL_CARDS_URL)
     .then((response) => {
+      this.setState({
+        errors: []
+      });
+
       let updatedIDsAfterGet = response.data.map((card) => {
         console.log(card.card.id);
         return card.card.id
@@ -35,10 +39,26 @@ class Board extends Component {
     })
     .catch((error) => {
       this.setState({
-        errors: error.message
+        errors: error.response.data.errors.text
       });
     });
   }
+
+  displayErrorsToUser = () => {
+    console.log("I am in displayErrorsToUser");
+    console.log(this.state.errors);
+    if (this.state.errors.length >= 1) {
+      let catchErrors = this.state.errors.map(() => {
+        return <li>{this.state.errors}</li>
+      });
+
+      return <ul>{catchErrors}</ul>;
+    }
+    else {
+      return;
+    };
+  };
+
 
 
 
@@ -47,6 +67,10 @@ class Board extends Component {
 
      axios.post(POST_CARD_TO_BOARD_URL, newCardInfo)
      .then((response) => {
+       this.setState({
+         errors: []
+       });
+
        console.log("In the success response for the post", response);
        let updatedData = this.state.cards;
        updatedData.push({card: response.data.card});
@@ -61,9 +85,9 @@ class Board extends Component {
 
        });
      })
-     .catch((errors) => {
+     .catch((error) => {
        this.setState({
-         errors: errors.message
+         errors: error.response.data.errors.text
        });
      });
   };
@@ -74,6 +98,10 @@ class Board extends Component {
     let DELETE_CARD_URL = `https://inspiration-board.herokuapp.com/cards/${cardNumber}`
     axios.delete(DELETE_CARD_URL)
       .then((response) => {
+        this.setState({
+          errors: []
+        });
+
         console.log(response);
         console.log(`deleted card: ${cardNumber}`);
         let currentIDs = this.state.cards.map((card) => {
@@ -96,15 +124,15 @@ class Board extends Component {
         });
 
       })
-      .catch((errors) => {
-        return <ul>
-          <li>{errors}</li>
-        </ul>
+      .catch((error) => {
+        this.setState({
+          errors: error.response.data.errors.text
+        });
       })
   };
 
   render() {
-    console.log(this.state.cards);
+    console.log(this.state.errors);
     const emoji = require("emoji-dictionary");
     const exampleFormat = this.state.cards.map((entry, i) => {
       return <li>
@@ -119,6 +147,9 @@ class Board extends Component {
         <h1>{emoji.getUnicode('sparkling_heart')} Red Panda {emoji.getUnicode('sparkling_heart')}</h1>
 
         <section>
+          <div>
+            {this.displayErrorsToUser()}
+          </div>
           <span>Add a new card: </span>
           <NewCardForm createNewCardCallback={this.addCardintoCardCollection}/>
         </section>
